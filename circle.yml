@@ -1,3 +1,6 @@
 test:
-    override:
-        - cd ares; ./gradlew test
+  override:
+    - cd ares; ./gradlew test
+notify:
+  webhooks:
+    - url: http://mcc.aphelion.io/builds/3/hook/circle
