@@ -1,4 +1,3 @@
 test:
     override:
-        - cd ares
-        - ./gradlew test
+        - cd ares; ./gradlew test
