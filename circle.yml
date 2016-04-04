@@ -5,6 +5,7 @@ dependencies:
 test:
   override:
     - cd ares; ./gradlew test
+    - cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
 notify:
   webhooks:
     - url: http://mcc.aphelion.io/builds/3/hook/circle
