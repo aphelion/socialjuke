@@ -4,7 +4,7 @@ dependencies:
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
 test:
   override:
-    - ./ares/test.sh
+    - ./ares/scripts/test.sh
 notify:
   webhooks:
     - url: http://mcc.aphelion.io/builds/3/hook/circle
