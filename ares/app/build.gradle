@@ -10,8 +10,8 @@ android {
         applicationId "io.aphelion.ares"
         minSdkVersion 16
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode computeVersionCode()
+        versionName computeVersionName()
     }
     signingConfigs {
         release {
@@ -56,4 +56,30 @@ buildscript {
 }
 repositories {
     mavenCentral()
+}
+
+def computeVersionCode() {
+    try {
+        def p = Runtime.getRuntime().exec("git rev-list --all --count")
+        def result = p.waitFor()
+        if (result != 0) {
+            return 0 // no git revisions
+        }
+        return p.getInputStream().readLines().get(0).toInteger()
+    } catch (ignored) {
+        return 0
+    }
+}
+
+def computeVersionName() {
+    def command = Runtime.getRuntime().exec("git rev-parse --short HEAD")
+    def result = command.waitFor()
+    return (result == 0) ? computeVersionCode() + "-" + command.inputStream.text.trim() : "nogit"
+}
+
+task printVersion() {
+    print "\n********** APP BUILD VERSION **********\n"
+    print "Version Code: " + computeVersionCode() + "\n"
+    print "Version Name: " + computeVersionName() + "\n"
+    print "***************************************\n\n"
 }
