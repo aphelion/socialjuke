@@ -11,6 +11,7 @@ deployment:
   staging:
     branch: master
     commands:
+      - ./ares/ci/write-keys.sh
       - ./ares/ci/deploy-staging.sh
 notify:
   webhooks:
