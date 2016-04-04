@@ -1,6 +1,6 @@
 machine:
   environment:
-    GRADLE_OPTS: -Xmx512m
+    GRADLE_OPTS: -Xmx2048m
 dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,android-23"
