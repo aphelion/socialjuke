@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'com.github.triplet.play'
 
 android {
     compileSdkVersion 23
@@ -23,6 +24,13 @@ android {
     }
 }
 
+if (hasProperty('track') && hasProperty('playJsonKeys')) {
+    play {
+        track = "${track}"
+        jsonFile = "${playJsonKeys}"
+    }
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
@@ -36,6 +44,7 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.github.triplet.gradle:play-publisher:1.1.4'
     }
 }
 repositories {
