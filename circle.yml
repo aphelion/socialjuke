@@ -6,7 +6,7 @@ test:
   override:
     - ./ares/ci/test.sh
   post:
-    - ./ares/ci/test-results.sh
+    #- ./ares/ci/test-results.sh
 deployment:
   staging:
     branch: master
