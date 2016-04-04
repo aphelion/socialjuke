@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'com.github.triplet.play'
+
+if (System.getenv("ARES_KEYSTORE_ALIAS_NAME")) {
+    apply plugin: 'com.github.triplet.play'
+
+    play {
+        track = "${track}"
+        jsonFile = rootProject.file('secrets/ares-play-credentials.json')
+    }
+}
 
 android {
     compileSdkVersion 23
@@ -13,6 +21,11 @@ android {
         versionCode computeVersionCode()
         versionName computeVersionName()
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
     signingConfigs {
         release {
             storeFile rootProject.file('secrets/ares-keystore.jks')
@@ -21,6 +34,7 @@ android {
             keyPassword System.getenv("ARES_KEYSTORE_ALIAS_PASSWORD")
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -28,14 +42,6 @@ android {
             signingConfig signingConfigs.release
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-}
-
-play {
-    track = "${track}"
-    jsonFile = rootProject.file('secrets/ares-play-credentials.json')
 }
 
 dependencies {
@@ -44,6 +50,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
+
 buildscript {
     ext.kotlin_version = '1.0.1-2'
     repositories {
@@ -54,6 +61,7 @@ buildscript {
         classpath 'com.github.triplet.gradle:play-publisher:1.1.4'
     }
 }
+
 repositories {
     mavenCentral()
 }
