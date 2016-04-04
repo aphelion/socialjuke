@@ -24,10 +24,10 @@ android {
     }
 }
 
-if (hasProperty('track') && hasProperty('playJsonKeys')) {
+if (hasProperty('track')) {
     play {
         track = "${track}"
-        jsonFile = "${playJsonKeys}"
+        jsonFile = file('play_keys.json')
     }
 }
 
