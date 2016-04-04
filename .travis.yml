@@ -1,5 +1,0 @@
-language: android
-env:
-  - APP=ares
-script:
-  - eval $APP/test.sh
