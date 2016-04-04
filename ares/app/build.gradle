@@ -22,13 +22,19 @@ android {
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
+    signingConfigs {
+        release {
+            storeFile rootProject.file('secrets/ares-keystore.jks')
+            storePassword System.getenv("ARES_KEYSTORE_PASSWORD")
+            keyAlias System.getenv("ARES_KEYSTORE_ALIAS_NAME")
+            keyPassword System.getenv("ARES_KEYSTORE_ALIAS_PASSWORD")
+        }
+    }
 }
 
-if (hasProperty('track')) {
-    play {
-        track = "${track}"
-        jsonFile = file('play_keys.json')
-    }
+play {
+    track = "${track}"
+    jsonFile = rootProject.file('secrets/ares-play-credentials.json')
 }
 
 dependencies {
