@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-set -e
-
 cd "$(dirname "$0")"
-./gradlew build connectedCheck
+
+./gradlew test
+cp -r app/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
