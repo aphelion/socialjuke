@@ -9,8 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="io.aphelion.ares.MainActivity">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:text="@string/host"
+        android:id="@+id/button"
+        android:layout_gravity="center_horizontal"
+        android:onClick="startHost"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
