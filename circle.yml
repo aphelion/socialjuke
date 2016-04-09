@@ -8,7 +8,7 @@ test:
   override:
     - fastlane android test
   post:
-    #- ./ares/ci/test-results.sh
+    - cp -r ares/app/build/outputs/test-results/* $CIRCLE_TEST_REPORTS
 deployment:
   staging:
     branch: master
