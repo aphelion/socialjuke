@@ -1,9 +1,9 @@
 dependencies:
   pre:
     - bundle install
-    - fastlane android dependencies
     - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,android-23"
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
+    - fastlane android dependencies
 test:
   override:
     - fastlane android test
