@@ -1,0 +1,25 @@
+fastlane_version "1.81.0"
+
+platform :android do
+  desc 'Run Android tests'
+  lane :test do
+    gradle(
+      project_dir: './ares',
+      task: 'test'
+    )
+  end
+
+  desc 'Push an Android staging build'
+  lane :staging do
+    gradle(
+      project_dir: './ares',
+      task: 'assembleRelease'
+    )
+    supply(
+      package_name: 'io.aphelion.ares',
+      track: 'alpha',
+      apk: './ares/app/build/outputs/apk/app-release.apk',
+      json_key: './ares/secrets/ares-play-credentials.json'
+    )
+  end
+end
