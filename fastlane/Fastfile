@@ -1,6 +1,14 @@
 fastlane_version "1.81.0"
 
 platform :android do
+  desc 'Download Android dependencies'
+  lane :dependencies do
+    gradle(
+      project_dir: './ares',
+      task: 'preBuild'
+    )
+  end
+
   desc 'Run Android tests'
   lane :test do
     gradle(
@@ -9,7 +17,7 @@ platform :android do
     )
   end
 
-  desc 'Push an Android staging build'
+  desc 'Push an Android build to staging'
   lane :staging do
     gradle(
       project_dir: './ares',
