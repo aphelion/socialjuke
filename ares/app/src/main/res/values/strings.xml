@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">SocialJuke</string>
-    <string name="host">Host</string>
-    <string name="create_host">Create</string>
-    <string name="juke_name_placeholder">Enter a Juke name</string>
-</resources>
