@@ -1,10 +1,10 @@
-fastlane_version "1.81.0"
+fastlane_version "1.95.0"
 
 platform :android do
   desc 'Download Android dependencies'
   lane :dependencies do
     gradle(
-      project_dir: './ares',
+      project_dir: './ares/android',
       task: 'preBuild'
     )
   end
@@ -12,7 +12,7 @@ platform :android do
   desc 'Run Android tests'
   lane :test do
     gradle(
-      project_dir: './ares',
+      project_dir: './ares/android',
       task: 'test'
     )
   end
@@ -20,7 +20,7 @@ platform :android do
   desc 'Push an Android build to staging'
   lane :staging do
     gradle(
-      project_dir: './ares',
+      project_dir: './ares/android',
       task: 'assembleRelease'
     )
     supply(
@@ -29,5 +29,5 @@ platform :android do
       apk: './ares/app/build/outputs/apk/app-release.apk',
       json_key: './ares/secrets/ares-play-credentials.json'
     )
-  end
+  end 
 end
