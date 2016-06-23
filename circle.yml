@@ -15,8 +15,8 @@ dependencies:
 
     - npm install --no-progress --no-spin:
         pwd: ares
-    - bundle install
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
+  post:
     - fastlane android dependencies
   cache_directories:
     - ./ares/node_modules
