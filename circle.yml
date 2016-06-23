@@ -14,11 +14,11 @@ dependencies:
     - gem install bundler -v 1.12.5
 
     - npm install --no-progress --no-spin:
-      pwd: ares
+        pwd: ares
     - bundle install
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
     - fastlane android dependencies
-  cache:
+  cache_directories:
     - ./ares/node_modules
 test:
   override:
