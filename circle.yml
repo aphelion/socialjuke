@@ -13,12 +13,12 @@ test:
     - fastlane react_native_test
     - fastlane android test
   post:
-    - cp -r ares/app/build/test-results/* $CIRCLE_TEST_REPORTS
+    - cp -r ares/android/app/build/test-results/* $CIRCLE_TEST_REPORTS
 deployment:
   staging:
     branch: master
     commands:
-      - ./ares/ci/decode-secrets.sh
+      - ./ci/decode-secrets.sh
       - fastlane android staging
 notify:
   webhooks:
