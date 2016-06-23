@@ -6,6 +6,7 @@ dependencies:
     - fastlane android dependencies
 test:
   override:
+    - fastlane react_native_test
     - fastlane android test
   post:
     - cp -r ares/app/build/test-results/* $CIRCLE_TEST_REPORTS

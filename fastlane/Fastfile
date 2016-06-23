@@ -1,5 +1,12 @@
 fastlane_version "1.95.0"
 
+default_platform :android
+
+desc 'Run React Native tests'
+lane :react_native_test do
+  sh 'cd ../ares && npm test'
+end
+
 platform :android do
   desc 'Download Android dependencies'
   lane :dependencies do
