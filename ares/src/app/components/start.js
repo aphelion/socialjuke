@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class Start extends Component {
     render() {
         return (
-            <View>
-                <Text>SocialJuke</Text>
+            <View style={styles.container}>
+                <Text style={styles.title}>SocialJuke</Text>
+                <Text style={styles.title}>👫📱🔊🎵</Text>
             </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#444B6E',
+  },
+  title: {
+    fontSize: 40,
+    textAlign: 'center',
+  }
+});
