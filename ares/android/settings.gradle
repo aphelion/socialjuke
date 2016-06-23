@@ -1,3 +1,3 @@
-rootProject.name = 'ares'
+rootProject.name = 'SocialJuke'
 
 include ':app'

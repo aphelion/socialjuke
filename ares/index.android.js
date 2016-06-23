@@ -11,4 +11,4 @@ export default class AresAndroid extends Component {
   }
 }
 
-AppRegistry.registerComponent('ares', () => AresAndroid);
+AppRegistry.registerComponent('SocialJuke', () => AresAndroid);
