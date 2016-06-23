@@ -1,5 +1,9 @@
 dependencies:
   pre:
+    # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
+    - rvm install rubygems 2.4.8 --force
+    - gem install bundler -v 1.12.5
+
     - bundle install
     - echo y | android update sdk --no-ui --all --filter "tools,platform-tools,android-23"
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.3"
