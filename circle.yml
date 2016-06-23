@@ -1,13 +1,25 @@
+machine:
+  environment:
+    LAST_SUCCESSFUL_BUILD: $(./ci/last-successful-build.rb)
+    ANDROID_NEEDS_DEPLOY: $(./ci/files-changed-in-range.sh $LAST_SUCCESSFUL_BUILD $CIRCLE_SHA1 ./ares/android)
+    IOS_NEEDS_DEPLOY: $(./ci/files-changed-in-range.sh $LAST_SUCCESSFUL_BUILD $CIRCLE_SHA1 ./ares/ios)
+  post:
+    - echo $LAST_SUCCESSFUL_BUILD
+    - echo $ANDROID_NEEDS_DEPLOY
+    - echo $IOS_NEEDS_DEPLOY
 dependencies:
   pre:
     # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
     - rvm install rubygems 2.4.8 --force
     - gem install bundler -v 1.12.5
 
-    - cd ares && npm install --no-progress --no-spin
+    - npm install --no-progress --no-spin:
+      pwd: ares
     - bundle install
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
     - fastlane android dependencies
+  cache:
+    - ./ares/node_modules
 test:
   override:
     - fastlane react_native_test
