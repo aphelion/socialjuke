@@ -4,7 +4,7 @@ dependencies:
     - rvm install rubygems 2.4.8 --force
     - gem install bundler -v 1.12.5
 
-    - cd ares && npm install --no-progress
+    - cd ares && npm install --no-progress --no-spin
     - bundle install
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
     - fastlane android dependencies
