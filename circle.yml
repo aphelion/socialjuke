@@ -1,6 +1,6 @@
 machine:
   environment:
-    GRADLE_OPTS: '-PpreDexEnable=false -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
+    GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
 dependencies:
   pre:
     # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33

@@ -20,7 +20,11 @@ platform :android do
   lane :test do
     gradle(
       project_dir: './ares/android',
-      task: 'test'
+      task: 'test',
+      properties: {
+        preDexEnable: false,
+        'com.android.build.threadPoolSize': 1
+      }
     )
   end
 
