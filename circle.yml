@@ -1,16 +1,8 @@
 machine:
   environment:
     GRADLE_OPTS: '-PpreDexEnable=false -Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
-  post:
-    - export LAST_SUCCESSFUL_BUILD=$(./ci/last-successful-build.rb)
-    - export ANDROID_NEEDS_DEPLOY=$(./ci/files-changed-in-range.sh $LAST_SUCCESSFUL_BUILD $CIRCLE_SHA1 ./ares/android)
-    - export IOS_NEEDS_DEPLOY=$(./ci/files-changed-in-range.sh $LAST_SUCCESSFUL_BUILD $CIRCLE_SHA1 ./ares/ios)
 dependencies:
   pre:
-    - echo $LAST_SUCCESSFUL_BUILD
-    - echo $ANDROID_NEEDS_DEPLOY
-    - echo $IOS_NEEDS_DEPLOY
-
     # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
     - rvm install rubygems 2.4.8 --force
     - gem install bundler -v 1.12.5
