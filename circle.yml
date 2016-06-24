@@ -1,4 +1,6 @@
 machine:
+  environment:
+    GRADLE_OPTS: '-Pcom.android.build.threadPoolSize=1'
   post:
     - export LAST_SUCCESSFUL_BUILD=$(./ci/last-successful-build.rb)
     - export ANDROID_NEEDS_DEPLOY=$(./ci/files-changed-in-range.sh $LAST_SUCCESSFUL_BUILD $CIRCLE_SHA1 ./ares/android)
