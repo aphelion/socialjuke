@@ -1,9 +1,6 @@
 machine:
   environment:
     GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
-  post:
-    - cp gradle.ci.properties gradle.properties:
-        pwd: ares/android
 dependencies:
   pre:
     # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
@@ -13,6 +10,8 @@ dependencies:
     - bundle install
     - npm install --no-progress --no-spin:
         pwd: ares
+    - cp gradle.ci.properties gradle.properties:
+        pwd: ares/android
   cache_directories:
     - ./ares/node_modules
 test:
