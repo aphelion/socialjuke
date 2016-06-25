@@ -10,6 +10,8 @@ dependencies:
     - bundle install
     - npm install --no-progress --no-spin:
         pwd: ares
+    - cp gradle.properties.ci gradle.properties:
+        pwd: ares/android
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
   cache_directories:
     - ./ares/node_modules
