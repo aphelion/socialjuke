@@ -28,7 +28,7 @@ platform :android do
   lane :staging do
     gradle(
       project_dir: './ares/android',
-      task: 'assembleRelease'
+      task: 'printVersion assembleRelease'
     )
     supply(
       package_name: 'io.aphelion.ares',
