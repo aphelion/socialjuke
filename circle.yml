@@ -3,6 +3,9 @@ machine:
     GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
 dependencies:
   pre:
+    # CircleCI shallow clones repositories, unshallow this repository if needed.
+    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+
     # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
     - rvm install rubygems 2.4.8 --force
     - gem install bundler -v 1.12.5
