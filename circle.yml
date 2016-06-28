@@ -19,7 +19,10 @@ dependencies:
   cache_directories:
     - ~/.gradle
     - ~/.android
+    - ./.bundle
+    - ./vendor
     - ./ares/node_modules
+    - ./ares/android/.gradle/
 test:
   override:
     - fastlane react_native_test
