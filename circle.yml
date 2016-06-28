@@ -1,6 +1,6 @@
 machine:
   environment:
-    GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xms512m -Xmx512m"'
+    GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError"'
 dependencies:
   pre:
     # CircleCI shallow clones repositories, unshallow this repository if needed.
