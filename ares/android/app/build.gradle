@@ -149,7 +149,7 @@ task copyDownloadableDepsToLibs(type: Copy) {
 
 def computeVersionCode() {
     try {
-        def p = Runtime.getRuntime().exec("git rev-list --all --count")
+        def p = Runtime.getRuntime().exec("git rev-list HEAD --count")
         def result = p.waitFor()
         if (result != 0) {
             return 0 // no git revisions
