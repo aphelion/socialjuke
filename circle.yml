@@ -16,6 +16,8 @@ dependencies:
     - cp gradle.ci.properties gradle.properties:
         pwd: ares/android
   cache_directories:
+    - ~/.gradle
+    - ~/.android
     - ./ares/node_modules
 test:
   override:
