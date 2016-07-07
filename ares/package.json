@@ -7,7 +7,7 @@
     "test": "mocha --require react-native-mock/mock.js src/test/support/setup-*.js --compilers js:babel-core/register --recursive src/test/**/*-test.js"
   },
   "dependencies": {
-    "react": "15.1.0",
+    "react": "15.2.0",
     "react-native": "0.28.0"
   },
   "devDependencies": {
