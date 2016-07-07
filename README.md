@@ -20,5 +20,6 @@ Set the following plain text values
 - `ARES_KEYSTORE_ALIAS_NAME`: the keystore alias used to sign ares
 - `ARES_KEYSTORE_ALIAS_PASSWORD`: the keystore alias password
 - `CIRCLE_API_TOKEN`: a valid CircleCI API token
+- `FASTLANE_PASSWORD`: the Apple ID password
 - `MATCH_USERNAME`: the Apple ID username
 - `MATCH_PASSWORD`: the credentials repository passphrase
