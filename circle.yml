@@ -35,6 +35,7 @@ deployment:
     branch: master
     commands:
       - ./ci/decode-secrets.sh
+      - fastlane ios staging
       - fastlane android staging
 notify:
   webhooks:

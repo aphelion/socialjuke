@@ -11,30 +11,53 @@ platform :android do
   desc 'Download Android dependencies'
   lane :dependencies do
     gradle(
-      project_dir: './ares/android',
-      task: 'preBuild'
+        project_dir: './ares/android',
+        task: 'preBuild'
     )
   end
 
   desc 'Run Android tests'
   lane :test do
     gradle(
-      project_dir: './ares/android',
-      task: 'test'
+        project_dir: './ares/android',
+        task: 'test'
     )
   end
 
   desc 'Push an Android build to staging'
   lane :staging do
     gradle(
-      project_dir: './ares/android',
-      task: 'printVersion assembleRelease'
+        project_dir: './ares/android',
+        task: 'printVersion assembleRelease'
     )
     supply(
-      package_name: 'io.aphelion.ares',
-      track: 'alpha',
-      apk: './ares/android/app/build/outputs/apk/app-release.apk',
-      json_key: './ares/android/secrets/ares-play-credentials.json'
+        package_name: 'io.aphelion.ares',
+        track: 'alpha',
+        apk: './ares/android/app/build/outputs/apk/app-release.apk',
+        json_key: './ares/android/secrets/ares-play-credentials.json'
     )
-  end 
+  end
+end
+
+platform :ios do
+  desc 'Push an iOS build to staging'
+  lane :staging do
+    match(
+        git_url: 'git@github.com:lnhrdt/certificates.git',
+        git_branch: 'ares',
+        type: 'appstore',
+        app_identifier: 'io.aphelion.ares'
+    )
+
+    increment_build_number(
+        build_number: number_of_commits,
+        xcodeproj: './ares/ios/SocialJuke.xcodeproj'
+    )
+
+    gym(
+        scheme: 'SocialJuke',
+        project: './ares/ios/SocialJuke.xcodeproj',
+        output_directory: './ares/ios/build'
+    )
+  end
 end
