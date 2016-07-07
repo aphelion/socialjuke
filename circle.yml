@@ -6,11 +6,6 @@ dependencies:
   pre:
     # CircleCI shallow clones repositories, unshallow this repository if needed.
     - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-
-    # https://discuss.circleci.com/t/bundler-fails-to-find-appropriate-version-despite-installing-appropriate-version-earlier-in-the-build/2815/33
-    - rvm install rubygems 2.4.8 --force
-    - gem install bundler -v 1.12.5
-
     - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
     - bundle install
     - npm install --no-progress --no-spin:
