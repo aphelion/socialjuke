@@ -1,26 +1,38 @@
 machine:
   environment:
-    _JAVA_OPTIONS: "-Xms512m -Xmx1024m"
+    _JAVA_OPTIONS: '-Xms512m -Xmx1024m'
     GRADLE_OPTS: '-Dorg.gradle.parallel=false -Dorg.gradle.jvmargs="-Xmx1024m -XX:+HeapDumpOnOutOfMemoryError"'
+  pre:
+    - brew update
+    - brew install rbenv ruby-build
+    - echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    - brew install node
+
+    # CircleCI shallow clones repositories, unshallow this repository if needed.
+    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow":
+        pwd: $HOME/$CIRCLE_PROJECT_REPONAME
 dependencies:
   pre:
-    # CircleCI shallow clones repositories, unshallow this repository if needed.
-    - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+    # install the version of ruby required by the project
+    - rbenv install -s && gem install bundler && rbenv rehash
 
+    # install ruby build tool dependencies
     - bundle install
+
+    # install react-native dependencies
     - npm install --no-progress --no-spin:
         pwd: ares
+
+    # install android dependencies
     - cp gradle.ci.properties gradle.properties:
         pwd: ares/android
-
-    - brew update
     - brew install android-sdk
-    - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
+    - echo "export ANDROID_HOME=$(brew --prefix android)" >> ~/.bashrc
+    - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1,tools,platform-tools,android-23"
   cache_directories:
+    - ~/.rbenv
     - ~/.gradle
     - ~/.android
-    # - ./.bundle
-    # - ./vendor
     - ./ares/node_modules
     - ./ares/android/.gradle/
 test:
