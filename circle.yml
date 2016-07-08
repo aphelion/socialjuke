@@ -6,12 +6,16 @@ dependencies:
   pre:
     # CircleCI shallow clones repositories, unshallow this repository if needed.
     - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
-    - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
+
     - bundle install
     - npm install --no-progress --no-spin:
         pwd: ares
     - cp gradle.ci.properties gradle.properties:
         pwd: ares/android
+
+    - brew update
+    - brew install android-sdk
+    - echo y | android update sdk --no-ui --all --filter "build-tools-23.0.1"
   cache_directories:
     - ~/.gradle
     - ~/.android
