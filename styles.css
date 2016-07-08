@@ -1,0 +1,14 @@
+html, body {
+    height: 100%;
+}
+
+.cover {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    align-content: stretch;
+    justify-content: center;
+
+    font-family: 'Chewy', cursive;
+    font-size: 2rem;
+}
